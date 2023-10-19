@@ -32,6 +32,16 @@ jobs:
             --env BP_CPYTHON_VERSION='3.11.*' \
             --publish
 
+      - name: 'Run Trivy vulnerability scanner'
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ghcr.io/${{ github.repository }}:latest'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+          format: 'table'
+
       - name: 'Cleanup runner work directory'
         if: ${{ always() }}
         run: |
