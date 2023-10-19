@@ -1,7 +1,6 @@
 ---
 name: push
 on: push
-name: 'Cloud native buildpacks build'
 
 jobs:
   buildpacks:
